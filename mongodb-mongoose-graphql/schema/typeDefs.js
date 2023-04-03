@@ -6,6 +6,7 @@ type User {
     _id: ID
     username: String
     email: String
+    thoughts: [Thought]
 }
 
 type Thought {
@@ -22,6 +23,7 @@ type Query {
 
 type Mutation {
     addUser(username: String email: String): User
+    addThought(thoughtText: String username: String): Thought
 }
 
 `;
