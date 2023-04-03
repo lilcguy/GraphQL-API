@@ -9,6 +9,7 @@ type User {
 }
 
 type Thought {
+    _id: ID
     thoughtText: String
     username: String
 }
@@ -16,6 +17,7 @@ type Thought {
 type Query {
     users: [User]
     thoughts: [Thought]
+    user(_id: ID): User
 }
 
 type Mutation {

@@ -9,13 +9,22 @@ const resolvers = {
             } catch (err) {
                 console.log(err);
             }
-        }
+        },
+        user: async function(parent, args) {
+            const { _id } = args;
+            try {
+                let userData = await User.findById(_id);
+                    return userData;
+            } catch (err) {
+                console.log(err);
+            }
+        } 
 
     },
 
     Mutation: {
         addUser: async function(parent, args) {
-            const { username, email } = args
+            const { username, email } = args;
         try {
             let userData = await User.create({username, email});
                 return userData;
@@ -23,7 +32,8 @@ const resolvers = {
             console.log(err);
         }
 
-        }
+        },
+        
 
     }
 }
