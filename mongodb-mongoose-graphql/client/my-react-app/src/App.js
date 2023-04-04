@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //import queryTest
 import QueryTest from './components/queryTest'; //react components must start with a capital letter.
+import MutationTest from './components/mutationTest';
 
 import {
   ApolloClient,
@@ -40,6 +41,7 @@ function App() {
         <h1>Front end </h1>
       </div>
       <QueryTest></QueryTest>
+      <MutationTest></MutationTest>
     </ApolloProvider>
   );
 }
