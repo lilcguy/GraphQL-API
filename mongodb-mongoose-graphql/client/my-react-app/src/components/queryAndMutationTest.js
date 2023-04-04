@@ -6,7 +6,7 @@ hook automatically executes our query and returns a result object containing loa
 error, and data properties.
 */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 import { useQuery, useMutation } from '@apollo/client';
@@ -18,46 +18,53 @@ import { GET_USERS } from '../utils/queries';
 
 import { ADD_USER } from '../utils/mutations';
 
+import MutationTest from './mutationTest';
+
+
 function QueryAndMutationTest() {
 
-    const [addUser] = useMutation(ADD_USER, {
-        refetchQueries: [
-            {query: GET_USERS},
-        ],
-    });
+    const { loading, data, error } = useQuery(GET_USERS);
 
-    const [email, setEmail] = useState(''); //tracks state of forms or submission
+    // const [addUser, { data: mutationData}] = useMutation(ADD_USER, {
+    //     refetchQueries: [
+    //         {query: GET_USERS},
+    //     ],
+    // });
 
-    const [username, setUsername] = useState(''); //tracks state of forms for submission
+    // useEffect(() => {
+    //     if (mutationData) {
+    //         setEmail('');
+    //         setUsername('');
+    //     }
+    // }, [mutationData]);
 
-     const handleEmailChange = function(e) { //track state of forms
-         setEmail(e.target.value);
+    // const [email, setEmail] = useState(''); //tracks state of forms or submission
+    // const [username, setUsername] = useState(''); //tracks state of forms for submission
 
-     };
+    //  const handleEmailChange = function(e) { //track state of forms
+    //      setEmail(e.target.value);
 
-     const handleUsernameChange = function (e) { //track state of forms
-         setUsername(e.target.value);
-     };
+    //  };
 
-     const handleFormSubmit = function(e) {
-         e.preventDefault();
+    //  const handleUsernameChange = function (e) { //track state of forms
+    //      setUsername(e.target.value);
+    //  };
 
-         addUser({
-             variables: {
-                 email: email, 
-                 username: username 
-             }
-         }).then(() => {
-             setEmail('');
-             setUsername('');
-         }).catch((err) => {
-             console.log(err);
-         });
+    //  const handleFormSubmit = function(e) {
+    //     e.preventDefault();
+      
+    //     addUser({
+    //       variables: {
+    //         email: email, 
+    //         username: username 
+    //       }
+    //     });
+    //   };
 
 
-     };
+     
 
-    const { loading, error, data } = useQuery(GET_USERS);
+    
     // Apollo Client automatically tracks a query's loading and error states, which are reflected in the loading and error properties.
         // When the result of your query comes back, it's attached to the data property.
 
@@ -89,21 +96,8 @@ function QueryAndMutationTest() {
 
                     );
                 })}
-                    <div>
-                        <h1>Add User Form</h1>
-                        <div>
-                            <form onSubmit={handleFormSubmit}>
-                                <div>
-                                        <input onChange={handleEmailChange} placeholder="email" class="email"></input>
-                                    <div>
-                                        <input  onChange={handleUsernameChange} placeholder="username" class="username"></input>
-                                    </div>
-                                </div>
-                                    <button type="submit">Submit</button>
-                            </form>
-            
-                        </div>
-                    </div>
+
+<MutationTest></MutationTest>
             </div>
                 
 
