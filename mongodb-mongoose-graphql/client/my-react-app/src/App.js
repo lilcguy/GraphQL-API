@@ -1,12 +1,12 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+//import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //import queryTest
 import QueryAndMutationTest from './components/queryAndMutationTest'; //react components must start with a capital letter.
-//import MutationTest from './components/mutationTest';
+import MutationTest from './components/mutationTest';
 
 import {
   ApolloClient,
@@ -41,6 +41,7 @@ function App() {
         <h1>Front end </h1>
       </div>
       <QueryAndMutationTest></QueryAndMutationTest>
+      
       
     </ApolloProvider>
   );
